@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const program = require('commander');
 const { fetchNow, weatherForecast, addCity } = require('./commands');
 const { prompt } = require('inquirer'); // require inquirerjs library
