@@ -67,8 +67,6 @@ program
   .option('-a, --advanced', 'do not use the default project settings')
   .action(name => {
     callGenerator(name);
-  });
-
-
+  })
 
 program.parse(process.argv)
