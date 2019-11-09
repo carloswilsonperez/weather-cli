@@ -63,10 +63,10 @@ program
   };
   
   program
-  .arguments('<project-name>', 'the name of the project to create')
-  .option('-a, --advanced', 'do not use the default project settings')
-  .action(name => {
-    callGenerator(name);
-  })
+    .arguments('<project-name>', 'the name of the project to create')
+    .option('-a, --advanced', 'do not use the default project settings')
+    .action(name => {
+      callGenerator(name);
+    });
 
 program.parse(process.argv)
