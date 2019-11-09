@@ -24,13 +24,16 @@ program
     .description('Command line Weather Application')
 
 program
-    .command("now")
-    .alias('n')
-    .description('see the current weather in the specified city')
-    .action( () => {
-      prompt(questions).then(answers =>
-      fetchNow(answers));
-    });
+  .command("now")
+  .alias('n')
+  .description('see the current weather in the specified city')
+  .action( () => {
+    prompt(questions).then(answers =>
+    fetchNow(answers));
+  });
+
+program
+  .description("Nice CLI for You!");
 
 program
   .command("forecast <city>")
