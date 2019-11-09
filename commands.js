@@ -12,52 +12,50 @@ const fetchNow = (location) => {
     console.log(city + " " + country + " " + place);
 
     axios.get(`http://api.weatherstack.com/current?access_key=${APIXU_KEY}&query=${place}`)
-        .then(function (response) {
+      .then(function (response) {
+        // handle success
+        return response.data;
+      })
+      .then(function (response) {
           // handle success
-          return response.data;
+          data = response;
+          const now = {
+            location: data.location.name,
+            country: data.location.country,
+            longitude: data.location.lon,
+            latitude: data.location.lat,
+            temperature: data.current.temperature,
+            condition: data.current.weather_descriptions
+          };
+          console.log(now);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log('---------------------------------');
+        console.log(error);
+      });
+    };
+
+    const weatherForecast = async (city) => {
+      axios.get(`http://api.weatherstack.com/forecast?access_key=${APIXU_KEY}&query=${city}`)
+        .then(function (response) {
+            // handle success
+            return response.data;
         })
         .then(function (response) {
             // handle success
             data = response;
-            const now = {
-              location: data.location.name,
-              country: data.location.country,
-              longitude: data.location.lon,
-              latitude: data.location.lat,
-              temperature: data.current.temperature,
-              condition: data.current.weather_descriptions
-            };
-            console.log(now);
+            console.log(data);
         })
         .catch(function (error) {
-          // handle error
-          console.log('---------------------------------');
-          console.log(error);
+            // handle error
+            console.log(error);
         });
-    };
-
-    const weatherForecast = async (city) => {
-        axios.get(`http://api.weatherstack.com/forecast?access_key=${APIXU_KEY}&query=${city}`)
-            .then(function (response) {
-                // handle success
-                return response.data;
-            })
-            .then(function (response) {
-                // handle success
-                data = response;
-                console.log(data);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            });
-
     };
 
     const addCity = (location) => {
       console.log(location);
     }
-
 
   module.exports = {
     fetchNow,
